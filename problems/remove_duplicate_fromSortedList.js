@@ -49,54 +49,30 @@ const arrToLinked = (arr, list) => {
 };
 
 const l1 = new LinkedList();
-const givenArr = [1, 2, 2];
+const givenArr = [1, 1, 2, 3, 3, 4, 4, 5];
 arrToLinked(givenArr, l1);
 l1.print();
 const l2 = new LinkedList();
-// const removeNode = function (head, n) {
-//   if (!head) {
-//     return head;
-//   }
-//   if (head.data === n) {
-//     head = head.next;
-//     return head;
-//   }
-//   let current = head;
-//   let prev = null;
-//   while (current && current.next) {
-//     prev = current;
-//     current = current.next;
-//     if (current.data === n) {
-//       prev.next = current.next;
-//     }
-//   }
-//   return head;
-// };
-// const l2 = new LinkedList();
-// l2.head = removeNode(l1.head, 4);
 
 var deleteDuplicates = function (head) {
   if (!head || !head.next) {
     return head;
   }
-  let prev = null;
-  let current = head;
-  while (current) {
-    if (current.next && current.data === current.next.data) {
-      while (current.next && current.data === current.next.data) {
-        current = current.next;
-      }
-      if (!prev) {
-        return null;
-      }
+  let dummy = new Node(0);
+  dummy.next = head;
+  let current = dummy;
 
-      prev.next = current.next;
+  while (current.next && current.next.next) {
+    if (current.next.data === current.next.next.data) {
+      let duplicateValue = current.next.data;
+      while (current.next && current.next.data === duplicateValue) {
+        current.next = current.next.next;
+      }
     } else {
-      prev = current;
       current = current.next;
     }
   }
-  return head;
+  return dummy.next;
 };
 l2.head = deleteDuplicates(l1.head);
 l2.print();
