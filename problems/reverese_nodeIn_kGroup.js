@@ -94,23 +94,6 @@ var reverseKGroup = function (head, k) {
     prev = current;
   }
   return dummy.next;
-
-  //     let currentGroupHead = prevGroupTail.next;
-  //     let current = currentGroupHead;
-
-  //     // Reverse the current group
-  //     for (let j = 1; j < k; j++) {
-  //       let nextNode = current.next;
-  //       current.next = nextNode.next;
-  //       nextNode.next = currentGroupHead;
-  //       currentGroupHead = nextNode;
-  //     }
-
-  //     prevGroupTail.next = currentGroupHead;
-  //     prevGroupTail = current; // Update the prevGroupTail for the next iteration
-  //   }
-
-  //   return dummy.next;
 };
 const l2 = new LinkedList();
 l2.head = reverseKGroup(l1.head, 3);
