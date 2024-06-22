@@ -25,76 +25,88 @@ class LinkedList {
   }
 
   addLast(data) {
-    const newNode = new Node(data)
+    const newNode = new Node(data);
     if (!this.head) {
       this.head = newNode;
       return;
     }
 
-    let current = this.head
-    while(current.next){
-        current = current.next
-
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
     }
-    current.next = newNode
+    current.next = newNode;
   }
 
-  print(){
-    let arr =[]
-    let current = this.head
-    while(current){
-        arr.push(current.data)
-        current = current.next
+  print() {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.data);
+      current = current.next;
     }
-    return arr
+    return arr;
   }
-
 }
-const l1 = new LinkedList()
+const l1 = new LinkedList();
 
-const arrToLinkedList=(arr,l1)=>{
-    arr.forEach(element => {
+const arrToLinkedList = (arr, l1) => {
+  arr.forEach((element) => {
+    l1.addLast(element);
+  });
+};
 
-        l1.addLast(element)
-        
-    });
+let arr1 = [1, 2, 3, 4, 5];
 
-}
-
-let arr1 = [2,4,5,7]
-
-arrToLinkedList(arr1,l1)
+arrToLinkedList(arr1, l1);
 console.log(l1.print());
 console.log(l1.head);
 
-var swapPairs = function(head) {
-    if(!head || !head.next){
-        return head
-    }
+var swapPairs = function (head) {
+  if (!head || !head.next) {
+    return head;
+  }
 
-    let prev = null
-    let current = head
-    let newHead = current.next
+  // let dummy = new Node(0);
+  // dummy.next = head;
+  // let prev = dummy;
+  // let current = head;
+  // while (current && current.next) {
+  //   let first = current;
+  //   let second = current.next;
+  //   first.next = second.next;
+  //   second.next = first;
 
-    while(current && current.next){
-        let nextNode = current.next
-        current.next = nextNode.next
-        nextNode.next = current
+  //   prev.next = second;
+  //   prev = first;
+  //   current = current.next;
+  // }
 
-        if(prev){
-            prev.next=nextNode
-        }
-        prev = current
-        current=current.next
+  // return current;
 
-    }
-    return newHead
-}
-l1.head = swapPairs(l1.head)
+  const dummy = new ListNode(0);
+  dummy.next = head;
+  let current = head;
+  let prev = dummy;
+  //   head = head.next
+
+  while (current && current.next) {
+    let first = current;
+    let second = current.next;
+    first.next = second.next;
+
+    second.next = first;
+
+    prev.next = second;
+
+    prev = first;
+    current = current.next;
+  }
+  if (current) {
+    prev.next = current;
+  }
+  return dummy.next;
+};
+l1.head = swapPairs(l1.head);
 
 console.log(l1.print());
-
-
-
-
-
